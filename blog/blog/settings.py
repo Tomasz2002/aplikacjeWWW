@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts',
     'rest_framework',
 ]
 GRAPHENE = {
