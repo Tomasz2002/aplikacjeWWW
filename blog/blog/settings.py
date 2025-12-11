@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'debug_toolbar',
-    'posts',
     'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
