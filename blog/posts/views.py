@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import permission_required
 from .models import Category, Topic, Post
 from .serializers import CategorySerializer, TopicSerializer, PostSerializer
 from .permissions import CustomDjangoModelPermissions
+from django.shortcuts import render, get_object_or_404
 
 class BearerTokenAuthentication(TokenAuthentication):
     keyword = u"Bearer"
@@ -189,3 +190,29 @@ class PostDelete(APIView):
         post = self.get_object(pk)
         post.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def topic_list_html(request):
+    topics = Topic.objects.all()
+    return render(request, "posts/topic/list.html", {'topics': topics})
+
+def topic_detail_html(request, pk):
+    topic = get_object_or_404(Topic, pk=pk)
+    return render(request, "posts/topic/detail.html", {'topic': topic})
+
+def post_list_html(request):
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, "posts/post/list.html", {'posts': posts})
+
+def post_detail_html(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, "posts/post/detail.html", {'post': post})
+
+def topic_posts_html(request, pk):
+    topic = get_object_or_404(Topic, pk=pk)
+    posts = Post.objects.filter(topic=topic).order_by('-created_at')
+    
+    context = {
+        'topic': topic,
+        'posts': posts
+    }
+    return render(request, "posts/topic/posts.html", context)

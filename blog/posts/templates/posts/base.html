@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Blog{% endblock %}</title>
+        <link href="{% static 'css/posts.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="header">
+            Aplikacja Blog
+        </div>
+        <div id="container">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div id="sidebar">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="/topics/">Lista Tematów</a></li>
+                    <li><a href="/posts/">Wszystkie Posty</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

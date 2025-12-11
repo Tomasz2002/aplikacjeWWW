@@ -1,0 +1,17 @@
+{% extends "posts/base.html" %}
+
+{% block title %}Lista Tematów{% endblock %}
+
+{% block content %}
+    <h1>Dostępne Tematy</h1>
+    <ul>
+    {% for topic in topics %}
+        <li>
+            <a href="/topics/{{ topic.id }}/">{{ topic.name }}</a>
+            (Kategoria: {{ topic.category.name }})
+            <br>
+            <small><a href="/topics/{{ topic.id }}/posts/">[Zobacz posty]</a></small>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "posts/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">
+        Data: {{ post.created_at }} | Autor: {{ post.created_by }} | 
+        Temat: <a href="/topics/{{ post.topic.id }}/">{{ post.topic.name }}</a>
+    </div>
+    <div class="post-content">
+        {{ post.text|linebreaks }}
+    </div>
+    <hr>
+    <a href="/posts/">Wróć do listy postów</a>
+{% endblock %}
